@@ -4,17 +4,19 @@ This project was delivered as a result of the course "Big Data Programming", tau
 
 ## Task fulfillment
 ### Subtask 1: Basics - Installation of Helm and Minikube
-Installation of Helm, an open source tool, which simplifies working with Kubernetes (or in my case: minikube) and eases the deployment of kubernetes applications, and also includes other features such as a version control system. Here I followed this [helm documentation](https://helm.sh/docs/intro/install/) and installed helm via homebrew for MacOs with `brew install helm`
-In addition, with `brew install minikube` and this [minikube website](https://minikube.sigs.k8s.io/docs/start/), I installed minikube. Minikube is a local and lightweight Kubernetes implementation and makes it easy (well.. as "easy" as is) to learn and develop for Kubernetes; it creates a VM on a local PC (in this case, my Mac) and deploys a simple cluster that contains only one node. For this to work, Docker container (or a Virtual Machine environment) is needed, too. 
-With `minikube start` I could finally start my cluster. 
+- Installation of **helm**, an open source tool, which simplifies working with Kubernetes (or in my case: minikube) and eases the deployment of kubernetes applications, and also includes other features such as a version control system. Here I followed this [helm documentation](https://helm.sh/docs/intro/install/) and installed helm via homebrew for MacOs with `brew install helm`
+- In addition, with `brew install minikube` and this [minikube website](https://minikube.sigs.k8s.io/docs/start/), I installed **minikube**. Minikube is a local and lightweight Kubernetes implementation and makes it easy (well.. as "easy" as is) to learn and develop for Kubernetes - a famous container management; it creates a VM on a local PC (in this case, my Mac) and deploys a simple cluster that contains only one node. For this to work, Docker container (or a Virtual Machine environment) is needed, too. 
+- based on the command `minikube version`and `helm version`, I tested whether the installation was successful; result: helm and minikube are available and usable
 
+### Subtask 2: Level Newbie - Developing a Docker Application 
+- python app schreiben
+- requirements.txt schreiben
+- Dockerfile schreiben und auf requirements verweisen
 
-All you need is Docker (or similarly compatible) container or a Virtual Machine environment, and Kubernetes is a single command away: minikube start
+- docker image build -name-
+- docker run
 
-
-### Subtask 2:
-
-### Subtask 3: 
+### Subtask 3: Level Hackerman - Installing the Docker Container in Minikube via Helm
 
 
 ## Commands 
