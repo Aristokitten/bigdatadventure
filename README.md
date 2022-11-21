@@ -6,15 +6,22 @@ This project was delivered as a result of the course "Big Data Programming", tau
 ### Subtask 1: Basics - Installation of Helm and Minikube
 - Installation of **helm**, an open source tool, which simplifies working with Kubernetes (or in my case: minikube) and eases the deployment of kubernetes applications, and also includes other features such as a version control system. Here I followed this [helm documentation](https://helm.sh/docs/intro/install/) and installed helm via homebrew for MacOs with `brew install helm`
 - In addition, with `brew install minikube` and this [minikube website](https://minikube.sigs.k8s.io/docs/start/), I installed **minikube**. Minikube is a local and lightweight Kubernetes implementation and makes it easy (well.. as "easy" as is) to learn and develop for Kubernetes - a famous container management; it creates a VM on a local PC (in this case, my Mac) and deploys a simple cluster that contains only one node. For this to work, Docker container (or a Virtual Machine environment) is needed, too. 
-- based on the command `minikube version`and `helm version`, I tested whether the installation was successful; result: helm and minikube are available and usable
+- based on the command `minikube version`and `helm version`, I tested whether the installation was successful; result: helm and minikube are available and usable!
 
 ### Subtask 2: Level Newbie - Developing a Docker Application 
-- python app schreiben
-- requirements.txt schreiben
-- Dockerfile schreiben und auf requirements verweisen
+- First, I developed a python app (app.py) that includes a flask microservice 
+- Second, I specified the requirements (in the requirements.txt), namely ``Flask == 2.0.0`` 
+- Third, I wrote the Dockerfile that e.g.: 
+  - intitializes the base image with the latest python and reduced its size (FROM)
+  - avoids dependency issues (RUN)
+  - installs the dependencies that are specified in said requirements.txt file (RUN) 
+  - exposes a port so that it can be accessed from outside (EXPOSE) 
+  - starts the container (CMD)
+- Lastly, on the path where app.py is saved, I built  and ran the docker container with the following commands:
+  - `docker image build -t <name>`
+  - optional a check in between: `docker image ls`
+  - `docker run -p 80:80 -d <name>`
 
-- docker image build -name-
-- docker run
 
 ### Subtask 3: Level Hackerman - Installing the Docker Container in Minikube via Helm
 
