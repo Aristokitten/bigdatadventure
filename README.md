@@ -86,7 +86,7 @@ Lastly, I ran several **tests**. For example: `kubectl get svc -name myspace` wh
 Ultimately, I **made sure everything worked** by following these steps: 
 - closing everything, rebooting my PC
 - `minikube start` in one terminal window
-- `minikube dashboard`in a separate terminal window; dashboard shows my running microservice 
+- `minikube dashboard`in a separate terminal window; [dashboard] (https://github.com/Aristokitten/bigdatadventure/blob/454b80bbed64660f96a957a744970c8224abbfec/task2c_dashboard_success.png) shows my running microservice 
 - `minikube service list`shows my services
 - `minikube service aufgabe2cimage-vronichart -n myspace` returns URL
 - when following the URL, my **microservice successfully** opened
