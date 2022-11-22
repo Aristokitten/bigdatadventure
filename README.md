@@ -6,7 +6,7 @@ This project was delivered as a result of the course "Big Data Programming", tau
 ### Subtask 1: Basics - Installation of Helm and Minikube
 - Installation of **helm**, an open source tool, which simplifies working with Kubernetes (or in my case: minikube) and eases the deployment of kubernetes applications, and also includes other features such as a version control system. Here I followed this [helm documentation](https://helm.sh/docs/intro/install/) and installed helm via homebrew for MacOs with `brew install helm`
 - In addition, with `brew install minikube` and this [minikube website](https://minikube.sigs.k8s.io/docs/start/), I installed **minikube**. Minikube is a local and lightweight Kubernetes implementation and makes it easy (well.. as "easy" as is) to learn and develop for Kubernetes - a famous container management; it creates a VM on a local PC (in this case, my Mac) and deploys a simple cluster that contains only one node. For this to work, Docker container (or a Virtual Machine environment) is needed, too. 
-- based on the command `minikube version` and `helm version`, I tested whether the installation was successful; result: helm and minikube are available and usable! [Yay!](task2a_success.png)
+- based on the command `minikube version` and `helm version`, I tested whether the installation was successful; result: helm and minikube are available and usable! [Yay](task2a_success.png)
 
 ### Subtask 2: Level Newbie - Developing a Docker Application 
 Goal of this subtask was to dockerize a microservice: 
@@ -18,10 +18,10 @@ Goal of this subtask was to dockerize a microservice:
   - installs the dependencies that are specified in said requirements.txt file (RUN) 
   - exposes a port so that it can be accessed from outside (EXPOSE) 
   - starts the container (CMD)
-- Lastly, on the path where app.py is saved, I built  and ran the docker container with the following commands:
-  - `docker image build -t <name>`
+- Lastly, on the path where app.py is saved, I built and ran the docker container with the following commands:
+  - `docker image build -t aufgabe2bfinal`
   - optional a check in between: `docker image ls`
-  - `docker run -p 80:80 -d <name>`
+  - `docker run -p 80:80 -d aufgabe2bfinal`
 
 Result: my flask application is installed in a container and runs in it accordingly! To go sure, I tested this via **curl**: `curl http://127.0.0.1:80`. [See, it worked](task2b_curl_success.png)! Further, in docker desktop, I can see the log files since creation. 
 <br>
@@ -92,11 +92,16 @@ Ultimately, I **made sure everything worked** by following these steps:
 - when following the URL, my **microservice successfully** opened
 
 ## Problems and Learnings 
-- there was always something I could do better: a mistake I found in hindsight, a new idea that came to my mind etc. Hence, I learned to **update** my chart like this: ``
+- there was always something I could do better: a mistake I found in hindsight, a new idea that came to my mind etc. Hence, I learned to **update** my chart like this:
 ```
 # upgrading the chart (of 0.1.0.tgz)
 helm upgrade aufgabe2cimage -n myspace ./vronichart-0.1.0.tgz`
 
 # packaging the new chart (which will then package it into 0.2.0.tgz)
 helm package vronichart --debug
-`` 
+``` 
+This is the reason why - in the meantime - I have deployed several versions of my microservice. 
+
+- **testing** to open my microservice from another local machine made me realize that I still had to take care of a lot of things, since the image couldn't be openend from another person without actually performing all the steps (build image, insert image name etc. etc...). Solution: either provide clear installation manual, or work with **Github Container Registry**. This is the way, I told myself. 
+- Hence, I registered for Github Container Registry and, ultimately, succeeded in uploading my **image under packages** [here](https://github.com/Aristokitten?tab=packages), which is also part / linked in my [bigdatadventure repository](https://github.com/Aristokitten/bigdatadventure) 
+
