@@ -104,4 +104,3 @@ helm package vronichart --debug
 - **testing** to open my microservice from another local machine made me realize that I still had to take care of a lot of things, since the image couldn't be openend from another person without actually performing all the steps (build image, insert image name etc. etc...). Solution: either provide clear installation manual, or work with **Github Container Registry**. This is the way, I told myself. 
 - Hence, I registered for Github Container Registry and, ultimately, succeeded in uploading my **image under packages** [here](https://github.com/Aristokitten?tab=packages), which is also part / linked in my [bigdatadventure repository](https://github.com/Aristokitten/bigdatadventure). 
 - In this way, it is possible to **install my image with just one command**: `docker pull ghcr.io/aristokitten/aufgabe2cimage:latest`  
-
