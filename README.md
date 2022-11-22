@@ -34,7 +34,7 @@ Problems encountered (and solved):
 ### Subtask 3: Level Hackerman - Installing the Docker Container in Minikube via Helm
 After creating the components, the next objective was to transform the microservice into a helm chart.
 
-First, I created the **image** in minikube's dockerservice: 
+1. First, I created the **image** in minikube's dockerservice: 
 ```
 # 1. start and access virtual machine 
 minikube start    
@@ -52,7 +52,7 @@ docker build -t aufgabe2cimage .
 docker images
 ```
 
-Second, I created the **helmchart** that I called "vronichart": 
+2. Second, I created the **helmchart** that I called "vronichart": 
 ```
 # 1. create chart
 helm create vronichart
@@ -61,7 +61,7 @@ helm create vronichart
 helm list 
 ```
 
-Third, I cleaned the **chartfiles**: deleted the redundancies, unncessary files and adapted the settings: 
+3. Third, I cleaned the **chartfiles**: deleted the redundancies, unncessary files and adapted the settings: 
 - deleted: serviceaccounts.yaml, notes.txt, commented out ingress.yaml (as this is for production environment and not deployment)
 - files I kept: hpa.yaml for future scaling, Chart.yaml for releasing updates, deployment.yaml for specifying the configuration for a deployment object
 - changed deployment.yaml: 
@@ -71,12 +71,12 @@ Third, I cleaned the **chartfiles**: deleted the redundancies, unncessary files 
   - image: for *repository* I referenced to my Git Container Registry repository with *ghrc.io/aristokitten/aufgabe2cimage* and adapted the *pullPolicy* to *IfNotPresent*
 <br>
 
-Fourth, I **installed the chart** called "aufgabe2cimage" in a namespace that I called "myspace" in a folder called "vronichart"; without this, the chart would just appear in "default". 
+4. Fourth, I **installed the chart** called "aufgabe2cimage" in a namespace that I called "myspace" in a folder called "vronichart"; without this, the chart would just appear in "default". 
 ```
 helm install aufgabe2cimage --namespace myspace --create-namespace ./vronichart
 ```
 
-Fifth, I **packaged** the chart with the name "vronichart", resulting in a nicely pacakged .tgz file: 
+5. Fifth, I **packaged** the chart with the name "vronichart", resulting in a nicely pacakged .tgz file: 
 ```
 helm package vronichart --debug
 ```
