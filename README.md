@@ -44,7 +44,7 @@ eval $(minikube -p minikube docker-env)
 # 2. optional: validate redirection to minikube's docker servier
 minikube status  
 
-# 3. build image that I called "aufgabe2cimage"; don''t forget the space and dot at the end of the command! (happened to me more often than I can admit)
+# 3. build image that I called "aufgabe2cimage"; don't forget the space and dot at the end of the command! (happened to me more often than I can admit)
 docker build -t aufgabe2cimage . 
 # this is optional and given as default anyways: docker build -t <imageName> -f./Dockerfile .
 
@@ -76,21 +76,20 @@ Fourth, I **installed the chart** called "aufgabe2cimage" in a namespace that I 
 helm install aufgabe2cimage --namespace myspace --create-namespace ./vronichart
 ```
 
-<br>
 Fifth, I **packaged** the chart with the name "vronichart", resulting in a nicely pacakged .tgz file: 
 ```
 helm package vronichart --debug
 ```
 
-<br>
-Lastly, I ran several **tests**. For example: 
-`kubectl get svc -name myspace` which shows running services, as well as: `helm install --dry-run vronichart-0.1.0.tgz --generate-name` to preview what would be sent to the cluster, without really submitting it.
-Ultimately, I made sure everything worked by following these steps: 
+Lastly, I ran several **tests**. For example: `kubectl get svc -name myspace` which shows running services, as well as: `helm install --dry-run vronichart-0.1.0.tgz --generate-name` to preview what would be sent to the cluster, without really submitting it. <br>
+
+Ultimately, I **made sure everything worked** by following these steps: 
 - closing everything, rebooting my PC
 - `minikube start` in one terminal window
 - `minikube dashboard`in a separate terminal window; dashboard shows my running microservice 
 - `minikube service list`shows my services
-- `minikube service aufgabe2cimage-vronichart -n myspace` returns URL 
+- `minikube service aufgabe2cimage-vronichart -n myspace` returns URL
+- when following the URL, my **microservice successfully** opened
 
 ## Problems and Learnings 
 - there was always something I could do better: a mistake I found in hindsight, a new idea that came to my mind etc. Hence, I learned to **update** my chart like this: ``
