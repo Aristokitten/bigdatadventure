@@ -101,6 +101,7 @@ helm upgrade aufgabe2cimage -n myspace ./vronichart-0.1.0.tgz
 helm package vronichart --debug
 ``` 
 
-- **testing** to open my microservice from another local machine made me realize that I still had to take care of a lot of things, since the image couldn't be openend from another person without actually performing all the steps (build image, insert image name etc. etc...). Solution: either provide clear installation manual, or work with **Github Container Registry**. This is the way, I told myself. 
+- **testing** to open my microservice from another local machine made me realize that I still had to take care of a lot of things, since the image couldn't be openend from another person without actually performing all the steps (build image, insert image name etc. etc...). I tested this several times with Liselotte Lichtenstein, my team partner from task 1, and vice versa. We came to the conclusion: this needs to be fixed. Solution: either provide a clear installation manual (which kind of misses the whole purpose...), or work with **Github Container Registry**. The latter is the way! 
 - Hence, I registered for Github Container Registry and, ultimately, succeeded in uploading my **image under packages** [here](https://github.com/Aristokitten?tab=packages), which is also part / linked in my [bigdatadventure repository](https://github.com/Aristokitten/bigdatadventure). 
 - In this way, it is possible to **install my image with just one command**: `docker pull ghcr.io/aristokitten/aufgabe2cimage:latest`  
+- This was, again, tested by Liselotte and me vice versa with our images. 
