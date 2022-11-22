@@ -69,7 +69,6 @@ helm list
   - service type: *NodePort* instead of ClusterIP with port *80* and nodePort specified to *28600*
 - changed value.yaml:
   - image: for *repository* I referenced to my Git Container Registry repository with *ghrc.io/aristokitten/aufgabe2cimage* and adapted the *pullPolicy* to *IfNotPresent*
-<br>
 
 4. Fourth, I **installed the chart** called "aufgabe2cimage" in a namespace that I called "myspace" in a folder called "vronichart"; without this, the chart would just appear in "default". 
 ```
