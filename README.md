@@ -92,7 +92,7 @@ Ultimately, I **made sure everything worked** by following these steps:
 - when following the URL, my **microservice successfully** opened
 
 ## Further Problems and Learnings 
-- there was always something I could do better: a mistake I found in hindsight, a new idea that came to my mind etc. Hence, I learned to **update** my chart like this:
+- there was always something I could do better: a mistake I found in hindsight, a new idea that came to my mind etc. Hence, I learned to **update** my charts like this; which by the way is the reason why - in the meantime - I have deployed several versions of my microservice:
 ```
 # upgrading the chart (of 0.1.0.tgz)
 helm upgrade aufgabe2cimage -n myspace ./vronichart-0.1.0.tgz
@@ -100,7 +100,6 @@ helm upgrade aufgabe2cimage -n myspace ./vronichart-0.1.0.tgz
 # packaging the new chart (which will then package it into 0.2.0.tgz)
 helm package vronichart --debug
 ``` 
-This is the reason why - in the meantime - I have deployed several versions of my microservice. 
 
 - **testing** to open my microservice from another local machine made me realize that I still had to take care of a lot of things, since the image couldn't be openend from another person without actually performing all the steps (build image, insert image name etc. etc...). Solution: either provide clear installation manual, or work with **Github Container Registry**. This is the way, I told myself. 
 - Hence, I registered for Github Container Registry and, ultimately, succeeded in uploading my **image under packages** [here](https://github.com/Aristokitten?tab=packages), which is also part / linked in my [bigdatadventure repository](https://github.com/Aristokitten/bigdatadventure). 
