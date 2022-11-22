@@ -84,7 +84,13 @@ helm package vronichart --debug
 
 <br>
 Lastly, I ran several **tests**. For example: 
-`kubectl get svc -name myspace`, as well as: `helm install --dry-run vronichart-0.1.0.tgz --generate-name`
+`kubectl get svc -name myspace` which shows running services, as well as: `helm install --dry-run vronichart-0.1.0.tgz --generate-name` to preview what would be sent to the cluster, without really submitting it.
+Ultimately, I made sure everything worked by following these steps: 
+- closing everything, rebooting my PC
+- `minikube start` in one terminal window
+- `minikube dashboard`in a separate terminal window; dashboard shows my running microservice 
+- `minikube service list`shows my services
+- `minikube service aufgabe2cimage-vronichart -n myspace` returns URL 
 
 ## Problems and Learnings 
 - there was always something I could do better: a mistake I found in hindsight, a new idea that came to my mind etc. Hence, I learned to **update** my chart like this: ``
