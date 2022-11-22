@@ -91,7 +91,7 @@ Ultimately, I **made sure everything worked** by following these steps:
 - `minikube service aufgabe2cimage-vronichart -n myspace` returns URL
 - when following the URL, my **microservice successfully** opened
 
-## Problems and Learnings 
+## Further Problems and Learnings 
 - there was always something I could do better: a mistake I found in hindsight, a new idea that came to my mind etc. Hence, I learned to **update** my chart like this:
 ```
 # upgrading the chart (of 0.1.0.tgz)
