@@ -28,12 +28,70 @@ Result: my flask application is installed in a container and runs in it accordin
 Problems encountered (and solved):
 - finding and specifying the right Flask version 
 - getting an overview of the files that are required to build image and container 
-- writing **D**ockerfile instead of **d**ockerfile... WHY THOUGH?! 
-- finding out that my container had a size of nearly 1000 MB. Understanding why; googling; realizing that my python base image is the guilty one and be reduced with `python:3.10-slim-bullseye`
+- writing Dockerfile instead of dockerfile... WHY THOUGH?! 
+- finding out that my container had a size of nearly 1000 MB. Understanding why; googling; realizing that my python base image is the guilty one. Reduced it with a minimized docker image, namely `python:3.10-slim-bullseye`
 
 ### Subtask 3: Level Hackerman - Installing the Docker Container in Minikube via Helm
+After creating the components, the next objective was to transform the microservice into a helm chart.
 
+First, I created the **image** in minikube's dockerservice: 
+```
+# 1. start and access virtual machine 
+minikube start    
+# to specify the VM, type: minikube start --driver=<virtualbox/hyperkit/....>
+eval $(minikube -p minikube docker-env)
 
-## Commands 
+# 2. optional: validate redirection to minikube's docker servier
+minikube status  
+
+# 3. build image that I called "aufgabe2cimage"; don''t forget the space and dot at the end of the command! (happened to me more often than I can admit)
+docker build -t aufgabe2cimage . 
+# this is optional and given as default anyways: docker build -t <imageName> -f./Dockerfile .
+
+# 4. optional: check the image just built
+docker images
+```
+
+Second, I created the **helmchart** that I called "vronichart": 
+```
+# 1. create chart
+helm create vronichart
+
+# 2. optional: validate that the chart was created
+helm list 
+```
+
+Third, I cleaned the **chartfiles**: deleted the redundancies, unncessary files and adapted the settings: 
+- deleted: serviceaccounts.yaml, notes.txt, commented out ingress.yaml (as this is for production environment and not deployment)
+- files I kept: hpa.yaml for future scaling, Chart.yaml for releasing updates, deployment.yaml for specifying the configuration for a deployment object
+- changed deployment.yaml: 
+  - ports: referenced to *.Values.service.port* for container port
+  - service type: *NodePort* instead of ClusterIP with port *80* and nodePort specified to *28600*
+- changed value.yaml:
+  - image: for *repository* I referenced to my Git Container Registry repository with *ghrc.io/aristokitten/aufgabe2cimage* and adapted the *pullPolicy* to *IfNotPresent*
+<br>
+
+Fourth, I **installed the chart** called "aufgabe2cimage" in a namespace that I called "myspace" in a folder called "vronichart"; without this, the chart would just appear in "default". 
+```
+helm install aufgabe2cimage --namespace myspace --create-namespace ./vronichart
+```
+
+<br>
+Fifth, I **packaged** the chart with the name "vronichart", resulting in a nicely pacakged .tgz file: 
+```
+helm package vronichart --debug
+```
+
+<br>
+Lastly, I ran several **tests**. For example: 
+`kubectl get svc -name myspace`, as well as: `helm install --dry-run vronichart-0.1.0.tgz --generate-name`
 
 ## Problems and Learnings 
+- there was always something I could do better: a mistake I found in hindsight, a new idea that came to my mind etc. Hence, I learned to **update** my chart like this: ``
+```
+# upgrading the chart (of 0.1.0.tgz)
+helm upgrade aufgabe2cimage -n myspace ./vronichart-0.1.0.tgz`
+
+# packaging the new chart (which will then package it into 0.2.0.tgz)
+helm package vronichart --debug
+`` 
